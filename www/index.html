@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<title>Tipp-Racer 🏁</title>
+
+<!-- iOS: Vollbild ohne Safari-Leisten, wenn vom Home-Bildschirm gestartet -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Tipp-Racer">
+<meta name="theme-color" content="#1c3bce">
+
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="icon" type="image/png" href="icon-192.png">
+<link rel="manifest" href="manifest.json">
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="stage">
+
+  <div id="menuTop">
+    💰 <span id="coinCount">0</span>
+  </div>
+
+  <section id="menu" class="screen active">
+    <div id="menuLogo">
+      <div id="menuTag"><div class="nametag pill">🇩🇪 DU</div><div class="nametag"><span class="down">▼</span></div></div>
+      <span id="menuChar">🚗</span>
+      <div class="plank"></div>
+      <div id="logoRibbon"></div>
+      <div id="logoText"><span class="g">tipp</span>&nbsp;<span class="w">racer</span></div>
+    </div>
+    
+    <div id="menuBest" style="font-size: 15px; font-weight: 700; color: var(--green); margin-bottom: 5px; text-shadow: 0 2px 4px rgba(0,0,0,0.5);">
+      🏆 Best WPM: 0 | ⏱️ Best Zeit: -
+    </div>
+
+    <div id="questPanel"></div>
+
+    <div style="display:flex; gap:10px; width: min(86vw, 420px);">
+      <button class="btn primary" data-go="levels" style="flex:1; min-width:0; padding:.7em 1em; font-size:18px;">🏁 Kampagne</button>
+      <button class="btn" data-go="race-survival" style="flex:1; min-width:0; background:var(--red); font-size:18px;">🔥 Survival</button>
+    </div>
+    
+    <button class="btn" data-go="skins" style="width: min(86vw, 420px); margin-top:10px;">🛒 Shop & Tuning</button>
+    <button class="btn small" id="btnGhostToggle" style="width: min(86vw, 420px); margin-top:8px;">👻 Ghost-Modus: AN</button>
+  </section>
+
+  <section id="levels" class="screen">
+    <button class="btn small back" data-go="menu">← Zurück</button>
+    <h2 class="title" style="margin-top:56px">🗺️ Level</h2>
+    <div id="levelGrid"></div>
+  </section>
+
+  <section id="skins" class="screen">
+    <button class="btn small back" data-go="menu">← Zurück</button>
+    <h2 class="title" style="margin-top:56px">🛒 Shop</h2>
+    <div id="skinGrid"></div>
+    <div style="height:30px"></div>
+    <button class="btn small" id="btnReset" style="background:var(--red); color:#fff; box-shadow:none;">🗑️ Fortschritt löschen</button>
+  </section>
+
+  <section id="race" class="screen">
+    <div id="hud">
+      <div class="pill stat"><b id="hudWpm">0</b><span>WPM</span></div>
+      <div class="pill stat"><b id="hudTime">0.0s</b><span>Zeit</span></div>
+      <div class="pill stat" id="hudAccBox"><b id="hudAcc">100%</b><span>Genauigkeit</span></div>
+      <div class="pill stat" id="hudProgBox"><b id="hudProg">0%</b><span>Fortschritt</span></div>
+    </div>
+
+    <div id="scene">
+      <div id="world"></div>
+      <div id="count"></div>
+    </div>
+  </section>
+
+  <div id="result">
+    <div id="resultCard">
+      <div id="resPlace">🏁 Platz 1</div>
+      <div id="resSub">Ergebnis des Rennens</div>
+      <div id="resStats">
+        <div class="stat"><b id="resWpm">0</b><span>WPM</span></div>
+        <div class="stat" id="resTimeBox"><b id="resTime">0.0s</b><span>Zeit</span></div>
+        <div class="stat"><b id="resAcc">100%</b><span>Genauigkeit</span></div>
+        <div class="stat"><b id="resCoins" style="color:#ffd23e">+0</b><span>Münzen</span></div>
+      </div>
+      <div id="board"></div>
+      <div id="resultBtns">
+        <button class="btn primary small" id="btnAgain">➡️ Weiter</button>
+        <button class="btn small" id="btnMenu">🏠 Menü</button>
+      </div>
+    </div>
+  </div>
+
+  <canvas id="confetti"></canvas>
+  <input type="text" id="typeInput" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" aria-label="Tippfeld">
+</div>
+
+<script src="script.js" defer></script>
+</body>
+</html>
